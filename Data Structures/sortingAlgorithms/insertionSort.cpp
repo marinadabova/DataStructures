@@ -12,23 +12,9 @@ void insertionSort(vector<int>& array) {
 		}
 		array[j] = curEl;
 	}
-	/*for (int i = 1; i < array.size(); i++){
-
-		int currentElement = array[i];
-
-		int j = i;
-		while (j > 0 && currentElement < array[j - 1]){
-			array[j] = array[j - 1];
-			j--;
-		}
-
-		array[j] = currentElement;
-
-	}*/
+	
 
 }
-
-
 int main() {
 
 	vector<int> v = { 5, 7, 3, 1, 6, 2, 7 };
