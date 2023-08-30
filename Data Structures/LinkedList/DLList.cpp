@@ -42,6 +42,10 @@ public:
 	void pop_front();
 	void remove_at(int pos);
 	void delete_duplicates(int value);//vs sreshtaniq
+	Node* deleteDuplicatesSorted(Node* head); // sortiran trqbva da e // 111233456 - 123456
+	Node* deleteDuplicatesSorted3(Node* head); // sortiran trqbva da e // 111233456 - 123456 - uj po-dobyr na gorniq
+	 
+	Node* deleteDuplicatesSorted2(Node* head); // sortiran trqbva da e // trie si gi   111233456- 2456
 	void clear();
 
 	bool search_element(int value);
@@ -239,6 +243,101 @@ void DLList::delete_duplicates(int value) {//vs sreshtaniq na value
 		pos++;
 	}
 }
+Node* DLList::deleteDuplicatesSorted(Node* head) { //1 1 1 2 3 -> 1 2 3 
+	if (head == nullptr) {
+		return NULL;
+	}
+	Node* cur = head;
+
+	while (cur->next != nullptr) {
+		if (cur->data == cur->next->data) {
+			cur->next = cur->next->next;
+		}
+		else {
+			cur = cur->next;
+		}
+	}
+	return head;
+}
+//better aproach
+Node* DLList::deleteDuplicatesSorted3(Node* head) {
+	if (head == nullptr) {
+		return nullptr;
+	}
+
+	Node* cur = head;
+
+	while (cur->next != nullptr) {
+		if (cur->data == cur->next->data) {
+			Node* duplicate = cur->next;
+			cur->next = cur->next->next;
+
+			if (cur->next != nullptr) {
+				cur->next->prev = cur; // Update the next node's prev pointer
+			}
+
+			// Properly deallocate memory if necessary
+			delete duplicate;
+		} else {
+			cur = cur->next;
+		}
+	}
+
+	// Handle the last node if it's a duplicate
+	if (head->next != nullptr && head->data == head->next->data) {
+		Node* duplicate = head;
+		head = head->next;
+		head->prev = nullptr; // Update the new head's prev pointer
+
+		// Properly deallocate memory if necessary
+		delete duplicate;
+	}
+
+	return head;
+}
+
+
+Node* DLList::deleteDuplicatesSorted2(Node* head) { //1,2,3,3,4,4,5] -> Output: [1, 2, 5]
+	if (!head || !head->next) {
+		return head;
+	}
+
+	Node* dummy = new Node(0); // Create a dummy node to handle edge cases
+	dummy->next = head;
+	head->prev = dummy;
+
+	Node* prev = dummy;
+	Node* curr = head;
+
+	while (curr) {
+		bool hasDuplicates = false;
+		while (curr->next && curr->data == curr->next->data) {
+			hasDuplicates = true;
+			curr = curr->next;
+		}
+
+		if (hasDuplicates) {
+			prev->next = curr->next;
+			if (curr->next) {
+				curr->next->prev = prev;
+			}
+		}
+		else {
+			prev = curr;
+		}
+
+		curr = curr->next;
+	}
+
+	head = dummy->next;
+	head->prev = nullptr; // Update the new head's prev pointer
+
+	delete dummy;
+
+	return head;
+}
+
+
 void DLList::clear() { //free
 	Node* node = head;
 	while (node != nullptr) {
@@ -489,14 +588,17 @@ void test() {
 	l.push_back(1);
 	l.push_back(2);
 	l.push_back(3);
-	l.push_back(4);
+	l.push_back(3);
 	l.push_back(5);
 	l.push_back(6);
+	//l.push_back(3);
 
 	//l.add_after(3, 1);
 	//l.insert_at(3, 2);
 	l.print();
-	l.delete_duplicates(1);
+	//l.delete_duplicates(3);
+	Node* currentHead = l.getHead();
+	Node* deleted=l.deleteDuplicatesSorted(currentHead);
 	l.print();
 	//reverse -variants
 	//l.reverse();
