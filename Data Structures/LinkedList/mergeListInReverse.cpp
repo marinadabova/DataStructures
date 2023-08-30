@@ -1,6 +1,8 @@
 //https://leetcode.com/problems/sort-list/submissions/
+//https://leetcode.com/problems/sort-list/submissions/
 //SinglyLinkedList
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 struct Node {
 	int data;
@@ -184,6 +186,35 @@ Node* merge_sort(Node* head) {
 	return merge(right, left);
 
 }
+
+//Node* SLList::sortList(Node* head) { //with unordered-map - vika che ne e ok i ne raboti ok
+//	if (!head || !head->next)
+//		return head;
+//
+//	std::unordered_map<int, Node*> nodeMap;
+//	Node* current = head;
+//
+//	while (current!=nullptr) {
+//		nodeMap[current->data] = current;
+//		current = current->next;
+//	}
+//
+//	current = nullptr;
+//
+//	std::vector<int> sortedKeys;
+//	for (const auto& kvp : nodeMap) {
+//		sortedKeys.push_back(kvp.first);
+//	}
+//	std::sort(sortedKeys.begin(), sortedKeys.end());
+//
+//	for (const int key : sortedKeys) {
+//		nodeMap[key]->next = current;
+//		current = nodeMap[key];
+//	}
+//
+//	return current;
+//}
+
 Node* SLList::sortList(Node* head) {
 	return merge_sort(head);
 }
