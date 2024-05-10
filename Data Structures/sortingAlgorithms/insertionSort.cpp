@@ -3,7 +3,7 @@
 using namespace std;
 
 void insertionSort(vector<int>& array) {
-	for (int i = 0; i < array.size(); i++) {
+	for (int i = 1; i < array.size(); i++) {
 		int curEl = array[i];
 		int j = i;
 		while (j > 0 && curEl < array[j - 1]) {
