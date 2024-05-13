@@ -8,7 +8,7 @@ int main() {
 	int target = 8;
 
 	vector<int> vect1 = { 5, 7, 7, 8, 8, 8, 10 };
-					    //0  1  2  3  4  5  6
+			     //0  1  2  3  4  5  6
 	auto lower = lower_bound(vect1.begin(), vect1.end(), target);
 	int startIndex = lower - vect1.begin(); //3
 
@@ -24,8 +24,8 @@ int main() {
 
 
 	vector<int> vect = { 1,4,4,4,5,5,5,5 };
-				/*		0 1 2 3 4 5 6 7 
-						1 2 3 4 5 6 7 8*/
+	  /*	 	     0 1 2 3 4 5 6 7 
+  			     1 2 3 4 5 6 7 8*/
 
 	auto first_4 = find(vect.begin(), vect.end(), 4);  // Iterator to the first occurrence of 4  //n slojnost
 
@@ -53,8 +53,8 @@ int main() {
 	int IndexUpper5 = (upper5 - vect.begin());
 
 	/*                 { 1,4,4,4,5,5,5,5};
-					   0 1 2 3 4 5 6 7
-					   1 2 3 4 5 6 7 8*/
+			     0 1 2 3 4 5 6 7
+		  	     1 2 3 4 5 6 7 8*/
 
 	vector<int>::iterator low1 = lower_bound(vect.begin(), vect.end(), 6); // Iterator to the first element >= 6
 	vector<int>::iterator low2 = lower_bound(vect.begin(), vect.end(), 0); // Iterator to the first element >= 0
