@@ -65,7 +65,7 @@ public:
 		Node* temp = front;
 		int s = 0;
 		if (front==nullptr ) {
-			return -1;
+			return 0;
 		}
 		while (temp) {
 			s++;
